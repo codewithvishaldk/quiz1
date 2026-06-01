@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Animations */
+@layer utilities {
+  .animate-slide-in {
+    @apply transition-all duration-300 ease-out translate-y-0 opacity-100;
+  }
+
+  .animate-slide-in-enter {
+    @apply translate-y-5 opacity-0;
+  }
+
+  .animate-fade-in {
+    @apply animate-fade-in;
+  }
+
+  .question-enter {
+    @apply animate-slide-in;
+  }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-200 dark:bg-slate-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary-500 hover:bg-primary-600 rounded;
+}
+
+/* Smooth transitions */
+* {
+  @apply transition-colors duration-200;
+}
+
+/* Loading Skeleton */
+.skeleton {
+  @apply bg-gray-200 dark:bg-slate-700 animate-pulse rounded;
+}
