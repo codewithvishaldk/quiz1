@@ -22,7 +22,7 @@
         "recharts": "^2.10.3",
         "zustand": "^4.4.1",
         "clsx": "^2.0.0",
-        "lucide-react": "^0.305.0",
+        "lucide-react": "^0.408.0",
         "react-hot-toast": "^2.4.1"
     },
     "devDependencies": {
