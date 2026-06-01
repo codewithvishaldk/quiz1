@@ -1,12 +1,14 @@
-import '@/styles/globals.css'
+import './styles/globals.css'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth, db } from './services/firebase'
 import { doc, getDoc } from 'firebase/firestore'
+import { Toaster } from 'react-hot-toast'
 
 // Hooks
 import { useAuthStore, useUIStore } from './context/store'
+import ErrorBoundary from './components/ErrorBoundary'
 
 // Pages
 import Home from './pages/Home'
@@ -75,77 +77,80 @@ function App() {
   }
 
   return (
-    <Router>
-      <div className={isDark ? 'dark' : ''}>
-        <div className="min-h-screen bg-white dark:bg-slate-950 text-gray-900 dark:text-white transition-colors duration-200">
-          <Navigation />
-          <main className="min-h-[calc(100vh-200px)]">
-            <Routes>
-              {/* Public Routes */}
-              <Route path="/" element={<Home />} />
-              <Route path="/quizzes" element={<QuizList />} />
-              <Route path="/quiz/:id" element={<QuizPlay />} />
-              <Route path="/result/:attemptId" element={<ResultPage />} />
+    <ErrorBoundary>
+      <Router>
+        <div className={isDark ? 'dark' : ''}>
+          <div className="min-h-screen bg-white dark:bg-slate-950 text-gray-900 dark:text-white transition-colors duration-200">
+            <Navigation />
+            <main className="min-h-[calc(100vh-200px)]">
+              <Routes>
+                {/* Public Routes */}
+                <Route path="/" element={<Home />} />
+                <Route path="/quizzes" element={<QuizList />} />
+                <Route path="/quiz/:id" element={<QuizPlay />} />
+                <Route path="/result/:attemptId" element={<ResultPage />} />
 
-              {/* Admin Routes */}
-              <Route path="/admin/login" element={<AdminLogin />} />
-              <Route
-                path="/admin/dashboard"
-                element={
-                  <ProtectedRoute>
-                    <AdminDashboard />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/admin/quizzes"
-                element={
-                  <ProtectedRoute>
-                    <AdminQuizzes />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/admin/questions"
-                element={
-                  <ProtectedRoute>
-                    <AdminQuestions />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/admin/categories"
-                element={
-                  <ProtectedRoute>
-                    <AdminCategories />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/admin/attempts"
-                element={
-                  <ProtectedRoute>
-                    <AdminAttempts />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/admin/settings"
-                element={
-                  <ProtectedRoute>
-                    <AdminSettings />
-                  </ProtectedRoute>
-                }
-              />
+                {/* Admin Routes */}
+                <Route path="/admin/login" element={<AdminLogin />} />
+                <Route
+                  path="/admin/dashboard"
+                  element={
+                    <ProtectedRoute>
+                      <AdminDashboard />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/quizzes"
+                  element={
+                    <ProtectedRoute>
+                      <AdminQuizzes />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/questions"
+                  element={
+                    <ProtectedRoute>
+                      <AdminQuestions />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/categories"
+                  element={
+                    <ProtectedRoute>
+                      <AdminCategories />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/attempts"
+                  element={
+                    <ProtectedRoute>
+                      <AdminAttempts />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/settings"
+                  element={
+                    <ProtectedRoute>
+                      <AdminSettings />
+                    </ProtectedRoute>
+                  }
+                />
 
-              {/* Catch all */}
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
-          </main>
-          <Footer />
+                {/* Catch all */}
+                <Route path="*" element={<Navigate to="/" replace />} />
+              </Routes>
+            </main>
+            <Footer />
+          </div>
         </div>
-      </div>
-    </Router>
+        <Toaster />
+      </Router>
+    </ErrorBoundary>
   )
 }
 

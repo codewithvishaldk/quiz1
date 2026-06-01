@@ -1,0 +1,42 @@
+{
+    "indexes": [{
+            "collectionGroup": "questions",
+            "queryScope": "Collection",
+            "fields": [{
+                    "fieldPath": "quizId",
+                    "order": "Ascending"
+                },
+                {
+                    "fieldPath": "createdAt",
+                    "order": "Descending"
+                }
+            ]
+        },
+        {
+            "collectionGroup": "attempts",
+            "queryScope": "Collection",
+            "fields": [{
+                    "fieldPath": "userId",
+                    "order": "Ascending"
+                },
+                {
+                    "fieldPath": "createdAt",
+                    "order": "Descending"
+                }
+            ]
+        },
+        {
+            "collectionGroup": "attempts",
+            "queryScope": "Collection",
+            "fields": [{
+                    "fieldPath": "quizId",
+                    "order": "Ascending"
+                },
+                {
+                    "fieldPath": "createdAt",
+                    "order": "Descending"
+                }
+            ]
+        }
+    ]
+}
